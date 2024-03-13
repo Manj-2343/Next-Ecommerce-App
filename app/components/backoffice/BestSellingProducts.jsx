@@ -28,8 +28,8 @@ const BestSellingProducts = () => {
     ],
   };
   return (
-    <div className="bg-slate-700 p-8 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Best Selling Products</h2>
+    <div className="dark:bg-slate-700 bg-slate-50 p-8 rounded-lg shadow-lg mb-5">
+      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50">Best Selling Products</h2>
       {/* Chart */}
       <div className="p-4">
         <Pie data={data}  />

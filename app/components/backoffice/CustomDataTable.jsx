@@ -12,11 +12,11 @@ const CustomDataTable = () => {
   const itemStartIndex = startIndex + 1;
   const itemEndIndex = Math.min(endIndex, data.length);
   return (
-    <div className="">
-      <h2 className="text-xl font-bold mb-4">Recent Orders</h2>
+    <div className="mt-3">
+      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50">Recent Orders</h2>
       {/* Table */}
       <div className="p-6">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -107,11 +107,11 @@ const CustomDataTable = () => {
           >
             <span className="text-xl font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
               Showing{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold text-blue-600 dark:text-white">
                 {itemStartIndex}-{itemEndIndex}
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold text-blue-600 dark:text-white">
                 {data.length}
               </span>
             </span>
@@ -132,7 +132,7 @@ const CustomDataTable = () => {
                     onClick={() => setCurrentPage(index + 1)}
                     className={
                       currentPage == index + 1
-                        ? "flex items-center justify-center px-3 h-10 text-gray-50 bg-blue-600  border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                        ? "flex items-center justify-center px-3 h-10 text-gray-50 bg-blue-600  border border-blue-300 hover:bg-blue-800 hover:text-white dark:bg-slate-100 dark:border-slate-200 dark:text-slate-800 dark:hover-gray-700 dark:hover:bg-slate-300 dark:hover:text-slate-900"
                         : "flex items-center justify-center px-3 h-10 text-blue-600  border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     }
                   >
