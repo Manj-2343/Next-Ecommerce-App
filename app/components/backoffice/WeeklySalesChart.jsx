@@ -124,7 +124,7 @@ const WeeklySalesChart = () => {
         {/* Content to display */}
         {tabs.map((tab, i) => {
           if (chartToDisplay === tab.type) {
-            return <Line options={options} data={tab.data} />;
+            return <Line options={options} data={tab.data} key={i} />;
           }
           return null;
         })}
