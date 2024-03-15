@@ -16,7 +16,7 @@ const page = () => {
       {/* charts */}
       <DashboardCharts />
       {/* recentOrders Table */}
-      <CustomDataTable />
+      {/* <CustomDataTable /> */}
     </div>
   );
 };

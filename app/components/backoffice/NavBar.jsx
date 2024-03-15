@@ -18,19 +18,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ThemeSwitcher from "../ThemeSwitcher";
+import Link from "next/link";
 
-const NavBar = () => {
+const NavBar = ({ setShowSideBar, showSideBar }) => {
   return (
-    <div className="flex items-center justify-between dark:bg-slate-800 bg-white text-slate-50  h-20 px-8 py-8 fixed top-0 w-100% left-60 right-0 pl-30 z-40 shadow-md">
+    <div className="flex items-center justify-between dark:bg-slate-800 bg-white text-slate-50  h-20 px-8 py-8 fixed top-0 w-full  z-50 shadow-md sm:pr-[20rem] ">
+      <Link href={"/dashboard"} className="sm:hidden">Logo</Link>
       {/* Icons */}
-      <button className="text-lime-700 dark:text-lime-500">
+      <button
+        onClick={() => setShowSideBar(!showSideBar)}
+        className="text-lime-700 dark:text-lime-500"
+      >
         <AlignJustify />
       </button>
       {/* 3Icons */}
       <div className="flex space-x-3">
         <button>
-        <ThemeSwitcher />
-        </button >
+          <ThemeSwitcher />
+        </button>
         <DropdownMenu>
           <DropdownMenuTrigger>
             <button
@@ -59,11 +64,15 @@ const NavBar = () => {
                 <div className="flex flex-col space-y-1">
                   <p>Image yellow sweet corn stock out..</p>
                   <div className="flex items-center space-x-2">
-                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">Stock Out</p>
+                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">
+                      Stock Out
+                    </p>
                     <p>Dec 12 2024 -12:40PM</p>
                   </div>
                 </div>
-                <button className="border"><X/></button>
+                <button className="border">
+                  <X />
+                </button>
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -78,11 +87,15 @@ const NavBar = () => {
                 <div className="flex flex-col space-y-1">
                   <p>Image yellow sweet corn stock out..</p>
                   <div className="flex items-center space-x-2">
-                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">Stock Out</p>
+                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">
+                      Stock Out
+                    </p>
                     <p>Dec 12 2024 -12:40PM</p>
                   </div>
                 </div>
-                <button className="border"><X/></button>
+                <button className="border">
+                  <X />
+                </button>
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -97,11 +110,15 @@ const NavBar = () => {
                 <div className="flex flex-col space-y-1">
                   <p>Image yellow sweet corn stock out..</p>
                   <div className="flex items-center space-x-2">
-                    <p className="px-2 py-0.55 bg-green-700 text-white rounded-full text-sm">Stock Out</p>
+                    <p className="px-2 py-0.55 bg-green-700 text-white rounded-full text-sm">
+                      Stock Out
+                    </p>
                     <p>Dec 12 2024 -12:40PM</p>
                   </div>
                 </div>
-                <button className="border"><X/></button>
+                <button className="border">
+                  <X />
+                </button>
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -116,11 +133,15 @@ const NavBar = () => {
                 <div className="flex flex-col space-y-1">
                   <p>Image yellow sweet corn stock out..</p>
                   <div className="flex items-center space-x-2">
-                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">Stock Out</p>
+                    <p className="px-2 py-0.55 bg-red-700 text-white rounded-full text-sm">
+                      Stock Out
+                    </p>
                     <p>Dec 12 2024 -12:40PM</p>
                   </div>
                 </div>
-                <button className="border"><X/></button>
+                <button className="border">
+                  <X />
+                </button>
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -135,11 +156,15 @@ const NavBar = () => {
                 <div className="flex flex-col space-y-1">
                   <p>Image yellow sweet corn stock out..</p>
                   <div className="flex items-center space-x-2">
-                    <p className="px-2 py-0.55 bg-green-700 text-white rounded-full text-sm">Stock Out</p>
+                    <p className="px-2 py-0.55 bg-green-700 text-white rounded-full text-sm">
+                      Stock Out
+                    </p>
                     <p>Dec 12 2024 -12:40PM</p>
                   </div>
                 </div>
-                <button className="border"><X/></button>
+                <button className="border">
+                  <X />
+                </button>
               </div>
             </DropdownMenuItem>
             <DropdownMenuSeparator />

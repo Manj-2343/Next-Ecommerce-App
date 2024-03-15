@@ -12,8 +12,10 @@ const CustomDataTable = () => {
   const itemStartIndex = startIndex + 1;
   const itemEndIndex = Math.min(endIndex, data.length);
   return (
-    <div className="mt-3">
-      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50">Recent Orders</h2>
+    <div className="mt-1">
+      <h2 className="text-xl font-bold mb-2 text-slate-800 dark:text-slate-50">
+        Recent Orders
+      </h2>
       {/* Table */}
       <div className="p-6">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
