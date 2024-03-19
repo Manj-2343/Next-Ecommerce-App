@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const Banners = () => {
   return (
-    <div>Banners</div>
-  )
-}
+    <div>
+      <h2>Banners</h2>
+      {/* 
+      image
+      description
+      url
+       */}
+    </div>
+  );
+};
 
 export default Banners;

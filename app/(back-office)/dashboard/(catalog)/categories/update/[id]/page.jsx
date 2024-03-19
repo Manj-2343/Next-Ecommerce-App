@@ -1,7 +1,7 @@
 import React from "react";
 
-const page = () => {
-  return <div>update</div>;
+const UpdateCategory = () => {
+  return <div>update category</div>;
 };
 
-export default page;
+export default UpdateCategory;

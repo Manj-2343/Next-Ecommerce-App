@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { withUt } from "uploadthing/tw";
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -77,5 +78,10 @@ module.exports = {
     require("tailwindcss-animate"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/forms"),
+    withUt({
+      // Your existing Tailwind config
+      content: ["./src/**/*.{ts,tsx,mdx,js,jsx}"],
+      // ...
+    }),
   ],
 };
