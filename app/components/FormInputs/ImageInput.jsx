@@ -41,7 +41,7 @@ export default function ImageInput({
         />
       ) : (
         <UploadDropzone
-          className="p-4 text-slate-900 dark:text-slate-50"
+          className="p-4 border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-700 dark:focus:ring-slate-500 sm:text-sm sm:leading-6 dark:bg-transparent dark:text-slate-100 "
           endpoint={endpoint}
           onClientUploadComplete={(res) => {
             setImageUrl(res[0].url);

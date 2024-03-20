@@ -8,6 +8,7 @@ import TextAreaInput from "../../../../../components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
+import SelectInput from "../../../../../components/FormInputs/SelectInput";
 
 const NewPage = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -48,7 +49,15 @@ const NewPage = () => {
             name="title"
             register={register}
             errors={errors}
+            className="w-full"
           />
+          {/* <SelectInput
+            label="Select Market"
+            name="title"
+            register={register}
+            errors={errors}
+            className="w-full"
+          /> */}
           <TextAreaInput
             label="Category Description"
             name="description"
