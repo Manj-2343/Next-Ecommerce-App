@@ -92,19 +92,14 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
       href: "/dashboard/categories",
     },
     {
-      title: "Attributes",
-      icon: SendToBack,
-      href: "/dashboard/attributes",
-    },
-    {
       title: "Coupons",
       icon: ScanSearch,
       href: "/dashboard/coupons",
     },
     {
-      title: "Store Sliders",
+      title: "Store Banners",
       icon: MonitorPlay,
-      href: "/dashboard/sliders",
+      href: "/dashboard/banners",
     },
   ];
   const [openMenu, setOpenMenu] = useState(false);
@@ -112,8 +107,8 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
     <div
       className={
         showSideBar
-          ? "sm:block mt-20 sm:mt-0 dark:bg-slate-700 bg-white space-y-6 w-60 h-screen dark:text-slate-50 fixed left-0 top-0 shadow-xl overflow-y-scroll"
-          : "mt-20  sm:mt-0 hidden sm:block dark:bg-slate-700 bg-white space-y-6 w-60 h-screen dark:text-slate-50 fixed left-0 top-0 shadow-xl overflow-y-scroll"
+          ? "sm:block mt-20 sm:mt-0 dark:bg-slate-800 bg-white space-y-6 w-60 h-screen dark:text-slate-50 fixed left-0 top-0 shadow-xl overflow-y-scroll"
+          : "mt-20  sm:mt-0 hidden sm:block dark:bg-slate-800 bg-white space-y-6 w-60 h-screen dark:text-slate-50 fixed left-0 top-0 shadow-xl overflow-y-scroll"
       }
     >
       {/* logo */}
@@ -153,7 +148,7 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
               {!openMenu ? <ChevronRight /> : <ChevronDown />}
             </button>
           </CollapsibleTrigger>
-          <CollapsibleContent className="px-3 pl-6 py-1 bg-slate-800 rounded-sm">
+          <CollapsibleContent className="px-3 pl-6 py-1 dark:bg-slate-800 dark:text-slate-300 rounded-sm">
             {catalogLinks.map((item, i) => {
               const Icon = item.icon;
               return (
