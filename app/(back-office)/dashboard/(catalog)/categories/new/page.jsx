@@ -10,8 +10,34 @@ import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "../../../../../components/FormInputs/SelectInput";
 
-const NewPage = () => {
+const Categories = () => {
   const [imageUrl, setImageUrl] = useState("");
+  const markets = [
+    {
+      id: 1,
+      title: "Sprouts Farmers Market",
+    },
+    {
+      id: 2,
+      title: "Cabbage Farmers Market",
+    },
+    {
+      id: 3,
+      title: "Carrot Farmers Market",
+    },
+    {
+      id: 4,
+      title: "Potato Farmers Market",
+    },
+    {
+      id: 5,
+      title: "Tomato Farmers Market",
+    },
+    {
+      id: 6,
+      title: "onion Farmers Market",
+    },
+  ];
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -34,7 +60,7 @@ const NewPage = () => {
     data.imageUrl = imageUrl;
     console.log(data);
     makePostRequest(setLoading, "api/categories", data, "Category", reset);
-    setImageUrl("")
+    setImageUrl("");
   }
   return (
     <>
@@ -51,13 +77,16 @@ const NewPage = () => {
             errors={errors}
             className="w-full"
           />
-          {/* <SelectInput
-            label="Select Market"
-            name="title"
+          <SelectInput
+            label="Select Markets"
+            name="marketIds"
             register={register}
             errors={errors}
             className="w-full"
-          /> */}
+            options={markets}
+            // original multiple={true}
+            multiple={false}
+          />
           <TextAreaInput
             label="Category Description"
             name="description"
@@ -81,4 +110,4 @@ const NewPage = () => {
   );
 };
 
-export default NewPage;
+export default Categories;

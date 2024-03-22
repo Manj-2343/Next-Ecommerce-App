@@ -54,6 +54,7 @@ const NewCoupons = () => {
             name="title"
             register={register}
             errors={errors}
+            className="w-full"
           />
           {/* <TextInput
             label="Coupon Code"
