@@ -8,6 +8,7 @@ import SubmitButton from "../../../../components/FormInputs/SubmitButton";
 import TextAreaInput from "../../../../components/FormInputs/TextAreaInput";
 import ImageInput from "../../../../components/FormInputs/ImageInput";
 import { generateSlug } from "@/lib/generateSlug";
+import ToggleInput from "../../../../components/FormInputs/ToggleInput";
 const NewFarmer = () => {
   const [loading, setLoading] = useState(false);
   const [logoUrl, setLogoUrl] = useState("");
@@ -60,6 +61,13 @@ const NewFarmer = () => {
             name="description"
             register={register}
             errors={errors}
+          />
+          <ToggleInput
+            label="Market status"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton

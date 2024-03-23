@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "../../../../../components/FormInputs/SubmitButton";
 import { makePostRequest } from "@/lib/apiRequest";
 import generateCouponCode from "@/lib/generateCouponCode";
+import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
 
 const NewCoupons = () => {
   const [loading, setLoading] = useState(false);
@@ -71,6 +72,13 @@ const NewCoupons = () => {
             register={register}
             errors={errors}
             className="w-full"
+          />
+           <ToggleInput
+            label="Publish your Coupon"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton

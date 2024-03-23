@@ -7,9 +7,8 @@ import TextInput from "../../../../components/FormInputs/TextInput";
 import SubmitButton from "../../../../components/FormInputs/SubmitButton";
 import TextAreaInput from "../../../../components/FormInputs/TextAreaInput";
 import generateUserCode from "@/lib/generateUserCode";
-import ToggleInput from "../../../../components/FormInputs/ToggleInput";
 
-const NewFarmer = () => {
+const NewStaff = () => {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -30,38 +29,40 @@ const NewFarmer = () => {
     const code = generateUserCode("LFF", data.name);
     data.code = code;
     console.log(data);
-    makePostRequest(setLoading, "api/farmers", data, "Farmer", reset);
+    makePostRequest(setLoading, "api/staff", data, "Staff", reset);
   }
-  // const exampleData = {
-  //   title: "Example Farmer",
-  //   expiryDate: "2024-03-31"
-  // };
-  // const farmerCode = generateFarmerCode(exampleData);
-  // console.log("Generated Farmer Code:", farmerCode);
+
   return (
     <>
-      <FormHeader title="New Farmer" />
+      <FormHeader title="New Staff" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 "
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Farmer's Full Name"
+            label="Staff Full Name"
             name="name"
             register={register}
             errors={errors}
-            className="w-full"
           />
           <TextInput
-            label="Farmer Email Address"
+            label="Password"
+            name="password"
+            register={register}
+            errors={errors}
+            className="w-full"
+            type="password"
+          />
+          <TextInput
+            label="Staff Email Address"
             name="email"
             register={register}
             errors={errors}
             className="w-full"
           />
           <TextInput
-            label="Farmer's Phone"
+            label="Staff Phone"
             name="phone"
             type="tel"
             register={register}
@@ -70,34 +71,20 @@ const NewFarmer = () => {
           />
 
           <TextInput
-            label="Farmer's Physical Address"
+            label="Staff Physical Address"
             name="physicalAddress"
             register={register}
             errors={errors}
             className="w-full"
           />
-          <TextInput
-            label="Farmer's Contact Person"
-            name="contactPerson"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
-          <TextInput
-            label="Farmer's Contact Person Phone"
-            name="contactPersonPhone"
-            type="tel"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
+
           <TextAreaInput
-            label="Farmer's Payment Terms"
+            label="Staff Payment Terms"
             name="terms"
             register={register}
             errors={errors}
           />
-          
+
           <TextAreaInput
             label="Notes"
             name="notes"
@@ -105,22 +92,15 @@ const NewFarmer = () => {
             errors={errors}
             isRequired={false}
           />
-           <ToggleInput
-            label="Publish your Banner"
-            name="isActive"
-            trueTitle="Active"
-            falseTitle="Draft"
-            register={register}
-          />
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="CreateFarmer"
-          loadingButtonTitle="Creating Farmer please wait..."
+          buttonTitle="CreateStaff"
+          loadingButtonTitle="Creating staff please wait..."
         />
       </form>
     </>
   );
 };
 
-export default NewFarmer;
+export default NewStaff;

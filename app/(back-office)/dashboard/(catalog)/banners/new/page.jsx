@@ -4,10 +4,9 @@ import FormHeader from "../../../../../components/backoffice/FormHeader";
 import TextInput from "../../../../../components/FormInputs/TextInput";
 import { useForm } from "react-hook-form";
 import SubmitButton from "../../../../../components/FormInputs/SubmitButton";
-import TextAreaInput from "../../../../../components/FormInputs/TextAreaInput";
-import { generateSlug } from "@/lib/generateSlug";
 import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
+import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
 
 const NewPage = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -59,6 +58,13 @@ const NewPage = () => {
             setImageUrl={setImageUrl}
             endpoint="bannerImageUploader"
             label="Banner Image"
+          />
+          <ToggleInput
+            label="Publish your Banner"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton

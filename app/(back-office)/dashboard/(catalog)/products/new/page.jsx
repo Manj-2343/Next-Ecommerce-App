@@ -10,6 +10,7 @@ import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "../../../../../components/FormInputs/SelectInput";
 import ArrayItemsInput from "../../../../../components/FormInputs/ArrayItemsInput";
+import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
 
 const NewProducts = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -161,6 +162,13 @@ const NewProducts = () => {
             register={register}
             errors={errors}
           />
+          <ToggleInput
+            label="Publish your Product"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
+          />
         </div>
         <SubmitButton
           isLoading={loading}
@@ -171,5 +179,4 @@ const NewProducts = () => {
     </>
   );
 };
-
 export default NewProducts;

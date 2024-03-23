@@ -9,6 +9,7 @@ import { generateSlug } from "@/lib/generateSlug";
 import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "../../../../../components/FormInputs/SelectInput";
+import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
 
 const Categories = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -98,6 +99,13 @@ const Categories = () => {
             setImageUrl={setImageUrl}
             endpoint="categoryImageUploader"
             label="Category Image"
+          />
+          <ToggleInput
+            label="Publish your Categories"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton
