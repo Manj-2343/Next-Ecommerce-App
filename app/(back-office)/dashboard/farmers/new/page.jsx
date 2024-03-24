@@ -17,6 +17,12 @@ const NewFarmer = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  //Custom Toggle Bar
+  const [isPublished, setIsPublished] = useState(false);
+
+  const handleTogglePublished = (value) => {
+    setIsPublished(value);
+  };
   async function onSubmit(data) {
     {
       /*
@@ -29,6 +35,7 @@ const NewFarmer = () => {
     }
     const code = generateUserCode("LFF", data.name);
     data.code = code;
+    data.isPublished = isPublished;
     console.log(data);
     makePostRequest(setLoading, "api/farmers", data, "Farmer", reset);
   }
@@ -107,10 +114,10 @@ const NewFarmer = () => {
           />
            <ToggleInput
             label="Publish your Banner"
-            name="isActive"
+            name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
-            register={register}
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton

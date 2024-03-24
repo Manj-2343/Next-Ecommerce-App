@@ -17,6 +17,13 @@ const NewPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  //Custom Toggle Bar
+  const [isPublished, setIsPublished] = useState(false);
+
+  const handleTogglePublished = (value) => {
+    setIsPublished(value);
+  };
+  //Custom Toggle Bar end
   async function onSubmit(data) {
     {
       /*  
@@ -28,6 +35,7 @@ const NewPage = () => {
     }
     data.imageUrl = imageUrl;
     console.log(data);
+    data.isPublished = isPublished;
     makePostRequest(setLoading, "api/banners", data, "Banner", reset);
     setImageUrl("");
   }
@@ -60,11 +68,11 @@ const NewPage = () => {
             label="Banner Image"
           />
           <ToggleInput
-            label="Publish your Banner"
-            name="isActive"
+            label="Publish your Training"
+            name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
-            register={register}
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton

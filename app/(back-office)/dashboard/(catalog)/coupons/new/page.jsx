@@ -17,10 +17,12 @@ const NewCoupons = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const title = watch("title");
-  // const expiryDate = watch("expiryDate");
-  // // const coupon = generateCouponCode({title, expiryDate});
-  // console.log(title, expiryDate);
+  //Custom Toggle Bar
+  const [isPublished, setIsPublished] = useState(false);
+
+  const handleTogglePublished = (value) => {
+    setIsPublished(value);
+  };
   async function onSubmit(data) {
     {
       /*
@@ -33,6 +35,7 @@ const NewCoupons = () => {
     }
     const couponCode = generateCouponCode(data.title, data.expiryDate);
     data.couponCode = couponCode;
+    data.isPublished = isPublished;
     console.log(data);
     makePostRequest(setLoading, "api/coupons", data, "Coupon", reset);
   }
@@ -75,10 +78,10 @@ const NewCoupons = () => {
           />
            <ToggleInput
             label="Publish your Coupon"
-            name="isActive"
+            name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
-            register={register}
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton

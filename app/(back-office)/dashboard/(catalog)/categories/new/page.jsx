@@ -46,6 +46,11 @@ const Categories = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [isPublished, setIsPublished] = useState(false);
+
+  const handleTogglePublished = (value) => {
+    setIsPublished(value);
+  };
   async function onSubmit(data) {
     {
       /*  
@@ -59,6 +64,7 @@ const Categories = () => {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
+    data.isPublished = isPublished;
     console.log(data);
     makePostRequest(setLoading, "api/categories", data, "Category", reset);
     setImageUrl("");
@@ -101,11 +107,11 @@ const Categories = () => {
             label="Category Image"
           />
           <ToggleInput
-            label="Publish your Categories"
-            name="isActive"
+            label="Publish your Training"
+            name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
-            register={register}
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton

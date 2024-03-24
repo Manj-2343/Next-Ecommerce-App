@@ -57,7 +57,7 @@ const Sidebar = ({ showSideBar, setShowSideBar }) => {
     {
       title: "Our Staffs",
       icon: User2,
-      href: "/dashboard/staffs",
+      href: "/dashboard/staff",
     },
     {
       title: "Biswal Community",

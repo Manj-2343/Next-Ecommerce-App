@@ -58,6 +58,12 @@ const NewProducts = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+   //Custom Toggle Bar
+   const [isPublished, setIsPublished] = useState(false);
+
+   const handleTogglePublished = (value) => {
+     setIsPublished(value);
+   };
   async function onSubmit(data) {
     {
       /*  
@@ -78,6 +84,7 @@ const NewProducts = () => {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
+    data.isPublished = isPublished;
     data.tags = tags;
     console.log(data);
     makePostRequest(setLoading, "api/products", data, "Product", reset);
@@ -164,10 +171,10 @@ const NewProducts = () => {
           />
           <ToggleInput
             label="Publish your Product"
-            name="isActive"
+            name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
-            register={register}
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton

@@ -7,6 +7,7 @@ import TextInput from "../../../../components/FormInputs/TextInput";
 import SubmitButton from "../../../../components/FormInputs/SubmitButton";
 import TextAreaInput from "../../../../components/FormInputs/TextAreaInput";
 import generateUserCode from "@/lib/generateUserCode";
+import ToggleInput from "../../../../components/FormInputs/ToggleInput";
 
 const NewStaff = () => {
   const [loading, setLoading] = useState(false);
@@ -16,18 +17,30 @@ const NewStaff = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [isPublished, setIsPublished] = useState(false);
+
+  const handleTogglePublished = (value) => {
+    setIsPublished(value);
+  };
   async function onSubmit(data) {
     {
       /*
-      -id=>auto()
-      -title
-      -code=>auto()
-      -expiry  date
-      -image
+      -name
+      -password
+      -email
+      -phone
+      -PhysicalAddress
+      -NIN
+      -DOB
+      -notes
+      -isPublished
+      -
       */
     }
-    const code = generateUserCode("LFF", data.name);
+
+    const code = generateUserCode("LSM", data.name);
     data.code = code;
+    data.isPublished = isPublished;
     console.log(data);
     makePostRequest(setLoading, "api/staff", data, "Staff", reset);
   }
@@ -47,16 +60,31 @@ const NewStaff = () => {
             errors={errors}
           />
           <TextInput
-            label="Password"
-            name="password"
+            label="NIN (Id Number)"
+            name="nin"
             register={register}
             errors={errors}
             className="w-full"
-            type="password"
+          />
+          <TextInput
+            label="Date Of Birth"
+            name="Dob"
+            type="date"
+            register={register}
+            errors={errors}
+            className="w-full"
           />
           <TextInput
             label="Staff Email Address"
             name="email"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
+          <TextInput
+            label="Staff Password"
+            name="password"
+            type="password"
             register={register}
             errors={errors}
             className="w-full"
@@ -69,7 +97,6 @@ const NewStaff = () => {
             errors={errors}
             className="w-full"
           />
-
           <TextInput
             label="Staff Physical Address"
             name="physicalAddress"
@@ -77,20 +104,25 @@ const NewStaff = () => {
             errors={errors}
             className="w-full"
           />
-
           <TextAreaInput
             label="Staff Payment Terms"
             name="terms"
             register={register}
             errors={errors}
           />
-
           <TextAreaInput
             label="Notes"
             name="notes"
             register={register}
             errors={errors}
             isRequired={false}
+          />
+          <ToggleInput
+            label="Publish your Training"
+            name="isPublished"
+            trueTitle="Active"
+            falseTitle="Draft"
+            handleToggle={handleTogglePublished}
           />
         </div>
         <SubmitButton
@@ -102,5 +134,4 @@ const NewStaff = () => {
     </>
   );
 };
-
 export default NewStaff;
