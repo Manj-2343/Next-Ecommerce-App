@@ -1,4 +1,3 @@
-// import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export async function makePostRequest(
@@ -6,12 +5,12 @@ export async function makePostRequest(
   endpoint,
   data,
   resourceName,
-  reset
+  reset,
+  router
 ) {
   try {
     setLoading(true);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    // fetch(`http//localhost:3000/api/categories`)
     const response = await fetch(`${baseUrl}/${endpoint}`, {
       method: "POST",
       headers: {
@@ -23,14 +22,11 @@ export async function makePostRequest(
     if (response.ok) {
       setLoading(false);
       toast.success(`New ${resourceName} Created Successfully`);
-      reset();
+      await reset();
+      router.back();
     } else {
       setLoading(false);
-      if (response.status === 409) {
-        toast.error("The Giving Warehouse Stock is NOT Enough");
-      } else {
-        toast.error("Something Went wrong");
-      }
+      toast.error("Something Went wrong");
     }
   } catch (error) {
     setLoading(false);
@@ -44,6 +40,7 @@ export async function makePutRequest(
   data,
   resourceName,
   redirect,
+  redirectTo,
   reset
 ) {
   try {
@@ -60,7 +57,7 @@ export async function makePutRequest(
       console.log(response);
       setLoading(false);
       toast.success(`${resourceName} Updated Successfully`);
-      redirect();
+      redirect(redirectTo);
     } else {
       setLoading(false);
       toast.error("Something Went wrong");

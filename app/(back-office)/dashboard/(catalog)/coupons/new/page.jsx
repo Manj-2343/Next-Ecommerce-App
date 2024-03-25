@@ -7,13 +7,14 @@ import SubmitButton from "../../../../../components/FormInputs/SubmitButton";
 import { makePostRequest } from "@/lib/apiRequest";
 import generateCouponCode from "@/lib/generateCouponCode";
 import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
+import { generateIsoFormattedDate } from "@/lib/generateIsoFormattedDate";
+import { useRouter } from 'next/navigation';
 
 const NewCoupons = () => {
   const [loading, setLoading] = useState(false);
   const {
     register,
     reset,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -23,6 +24,7 @@ const NewCoupons = () => {
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
+  const router = useRouter();
   async function onSubmit(data) {
     {
       /*
@@ -34,17 +36,22 @@ const NewCoupons = () => {
       */
     }
     const couponCode = generateCouponCode(data.title, data.expiryDate);
+    const isoFormattedDate = generateIsoFormattedDate(data.expiryDate);
+    data.expiryDate = isoFormattedDate;
     data.couponCode = couponCode;
     data.isPublished = isPublished;
     console.log(data);
-    makePostRequest(setLoading, "api/coupons", data, "Coupon", reset);
+
+    makePostRequest(
+      setLoading,
+      "api/coupons",
+      data,
+      "Coupon",
+      reset,
+      router.back("/dashboard/coupons")
+    );
   }
-  // const exampleData = {
-  //   title: "Example Coupon",
-  //   expiryDate: "2024-03-31"
-  // };
-  // const couponCode = generateCouponCode(exampleData);
-  // console.log("Generated Coupon Code:", couponCode);
+
   return (
     <>
       <FormHeader title="New Coupon" />
@@ -76,7 +83,7 @@ const NewCoupons = () => {
             errors={errors}
             className="w-full"
           />
-           <ToggleInput
+          <ToggleInput
             label="Publish your Coupon"
             name="isPublished"
             trueTitle="Active"

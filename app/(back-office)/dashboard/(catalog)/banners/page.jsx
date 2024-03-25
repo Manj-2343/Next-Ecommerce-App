@@ -7,7 +7,7 @@ const Banners = () => {
     <div>
       {/* header */}
       <PageHeader
-        heading="Category"
+        heading="Banner"
         href="/dashboard/banners/new"
         linkTitle="Add Banner"
       />

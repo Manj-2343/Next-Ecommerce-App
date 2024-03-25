@@ -8,6 +8,7 @@ import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
 
+
 const NewPage = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,7 @@ const NewPage = () => {
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
+ 
   //Custom Toggle Bar end
   async function onSubmit(data) {
     {
@@ -31,12 +33,21 @@ const NewPage = () => {
       -title
       -link
       -Image
+      -isPublished
       */
     }
     data.imageUrl = imageUrl;
-    console.log(data);
     data.isPublished = isPublished;
-    makePostRequest(setLoading, "api/banners", data, "Banner", reset);
+    console.log(data);
+    
+    makePostRequest(
+      setLoading,
+      "api/banners",
+      data,
+      "Banner",
+      reset,
+      
+    );
     setImageUrl("");
   }
   return (
