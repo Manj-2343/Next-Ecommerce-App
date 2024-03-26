@@ -24,3 +24,23 @@ export async function POST(request) {
     );
   }
 }
+
+export async function GET(request) {
+  try {
+    const banners = await db.banner.findMany({
+      orderBy:{
+        createdAt:"desc"
+      }
+    });
+    return NextResponse.json(banners);
+  } catch (error) {
+    console.error("Error fetching Banner:", error);
+    return NextResponse.json(
+      {
+        message: "Failed To fetch the Banner",
+        error: error.message,
+      },
+      500
+    );
+  }
+}

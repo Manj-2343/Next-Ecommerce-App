@@ -9,9 +9,24 @@ import TextAreaInput from "../../../../components/FormInputs/TextAreaInput";
 import ImageInput from "../../../../components/FormInputs/ImageInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ToggleInput from "../../../../components/FormInputs/ToggleInput";
+import SelectInput from "../../../../components/FormInputs/SelectInput";
 const NewFarmer = () => {
   const [loading, setLoading] = useState(false);
   const [logoUrl, setLogoUrl] = useState("");
+  const categories =[
+    {
+      id:1,
+      title:"Category 1"
+    },
+    {
+      id:2,
+      title:"Category 2"
+    },
+    {
+      id:3,
+      title:"Category 3"
+    },
+  ]
   const {
     register,
     reset,
@@ -56,6 +71,16 @@ const NewFarmer = () => {
             name="title"
             register={register}
             errors={errors}
+            className="w-full"
+          />
+          <SelectInput
+            label="Select Categories"
+            name="categoryIds"
+            register={register}
+            errors={errors}
+            className="w-full"
+            options={categories}
+            multiple={true}
           />
           <ImageInput
             imageUrl={logoUrl}

@@ -10,35 +10,10 @@ import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "../../../../../components/FormInputs/SelectInput";
 import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
-
+import { useRouter } from "next/navigation";
 const Categories = () => {
   const [imageUrl, setImageUrl] = useState("");
-  const markets = [
-    {
-      id: 1,
-      title: "Sprouts Farmers Market",
-    },
-    {
-      id: 2,
-      title: "Cabbage Farmers Market",
-    },
-    {
-      id: 3,
-      title: "Carrot Farmers Market",
-    },
-    {
-      id: 4,
-      title: "Potato Farmers Market",
-    },
-    {
-      id: 5,
-      title: "Tomato Farmers Market",
-    },
-    {
-      id: 6,
-      title: "onion Farmers Market",
-    },
-  ];
+  const markets = [];
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -51,6 +26,7 @@ const Categories = () => {
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
+  const router = useRouter();
   async function onSubmit(data) {
     {
       /*  
@@ -68,6 +44,7 @@ const Categories = () => {
     console.log(data);
     makePostRequest(setLoading, "api/categories", data, "Category", reset);
     setImageUrl("");
+    router.back("dashboard/categories");
   }
   return (
     <>
@@ -82,18 +59,8 @@ const Categories = () => {
             name="title"
             register={register}
             errors={errors}
-            className="w-full"
           />
-          <SelectInput
-            label="Select Markets"
-            name="marketIds"
-            register={register}
-            errors={errors}
-            className="w-full"
-            options={markets}
-            // original multiple={true}
-            multiple={false}
-          />
+
           <TextAreaInput
             label="Category Description"
             name="description"
@@ -107,7 +74,7 @@ const Categories = () => {
             label="Category Image"
           />
           <ToggleInput
-            label="Publish your Training"
+            label="Publish your Category"
             name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"

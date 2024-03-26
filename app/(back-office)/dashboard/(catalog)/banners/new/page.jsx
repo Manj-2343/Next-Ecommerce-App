@@ -7,7 +7,7 @@ import SubmitButton from "../../../../../components/FormInputs/SubmitButton";
 import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
 import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
-
+import { useRouter } from "next/navigation";
 
 const NewPage = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -24,7 +24,7 @@ const NewPage = () => {
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
- 
+  const router = useRouter();
   //Custom Toggle Bar end
   async function onSubmit(data) {
     {
@@ -39,16 +39,16 @@ const NewPage = () => {
     data.imageUrl = imageUrl;
     data.isPublished = isPublished;
     console.log(data);
-    
+
     makePostRequest(
       setLoading,
       "api/banners",
       data,
       "Banner",
       reset,
-      
     );
     setImageUrl("");
+    router.back("dashboard/banners")
   }
   return (
     <>

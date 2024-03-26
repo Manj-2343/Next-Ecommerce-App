@@ -8,9 +8,11 @@ import SubmitButton from "../../../../components/FormInputs/SubmitButton";
 import TextAreaInput from "../../../../components/FormInputs/TextAreaInput";
 import generateUserCode from "@/lib/generateUserCode";
 import ToggleInput from "../../../../components/FormInputs/ToggleInput";
-
+import { useRouter } from "next/navigation";
+import ImageInput from "../../../../components/FormInputs/ImageInput";
 const NewFarmer = () => {
   const [loading, setLoading] = useState(false);
+  const [logoUrl, setLogoUrl] = useState("");
   const {
     register,
     reset,
@@ -23,6 +25,7 @@ const NewFarmer = () => {
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
+  const router = useRouter();
   async function onSubmit(data) {
     {
       /*
@@ -38,6 +41,7 @@ const NewFarmer = () => {
     data.isPublished = isPublished;
     console.log(data);
     makePostRequest(setLoading, "api/farmers", data, "Farmer", reset);
+    router.back("dashboard/farmers");
   }
   // const exampleData = {
   //   title: "Example Farmer",
@@ -98,13 +102,20 @@ const NewFarmer = () => {
             errors={errors}
             className="w-full"
           />
+          <ImageInput
+            imageUrl={logoUrl}
+            setImageUrl={setLogoUrl}
+            endpoint="farmerProfileUploader"
+            label="Farmer Profile Image"
+          />
           <TextAreaInput
             label="Farmer's Payment Terms"
             name="terms"
             register={register}
             errors={errors}
+            isRequired={false}
           />
-          
+
           <TextAreaInput
             label="Notes"
             name="notes"
@@ -112,7 +123,7 @@ const NewFarmer = () => {
             errors={errors}
             isRequired={false}
           />
-           <ToggleInput
+          <ToggleInput
             label="Publish your Banner"
             name="isPublished"
             trueTitle="Active"

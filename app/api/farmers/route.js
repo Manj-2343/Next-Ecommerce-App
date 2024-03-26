@@ -12,6 +12,7 @@ export async function POST(request) {
       phone,
       physicalAddress,
       terms,
+      isPublished,
     } = await request.json();
     const newFarmer = {
       code,
@@ -23,6 +24,8 @@ export async function POST(request) {
       phone,
       physicalAddress,
       terms,
+      isPublished,
+      profileImageUrl,
     };
     console.log(newFarmer);
     return NextResponse.json(newFarmer);
