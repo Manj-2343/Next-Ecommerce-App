@@ -1,39 +1,42 @@
 "use client";
 import React, { useState } from "react";
-import FormHeader from "../../../../../components/backoffice/FormHeader";
-import TextInput from "../../../../../components/FormInputs/TextInput";
 import { useForm } from "react-hook-form";
-import SubmitButton from "../../../../../components/FormInputs/SubmitButton";
-import TextAreaInput from "../../../../../components/FormInputs/TextAreaInput";
-import { generateSlug } from "@/lib/generateSlug";
-import ImageInput from "../../../../../components/FormInputs/ImageInput";
 import { makePostRequest } from "@/lib/apiRequest";
-import ToggleInput from "../../../../../components/FormInputs/ToggleInput";
+import { generateSlug } from "@/lib/generateSlug";
+import TextInput from "../FormInputs/TextInput";
+import SelectInput from "../FormInputs/SelectInput";
+import ImageInput from "../FormInputs/ImageInput";
+import TextAreaInput from "../FormInputs/TextAreaInput";
+import ToggleInput from "../FormInputs/ToggleInput";
+import SubmitButton from "../FormInputs/SubmitButton";
+import FormHeader from "./FormHeader";
 import { useRouter } from "next/navigation";
-const Categories = () => {
-  const [imageUrl, setImageUrl] = useState("");
-  const markets = [];
+
+const NewMarket = ({ categories }) => {
   const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  //Custom Toggle Bar
+  const router = useRouter();
   const [isPublished, setIsPublished] = useState(false);
 
   const handleTogglePublished = (value) => {
     setIsPublished(value);
   };
-  const router = useRouter();
   async function onSubmit(data) {
     {
-      /*  
+      /*
       -id=>auto()
       -title
-      -slug=>auto()
-      -description
-      -image
+      -slug=>auto
+      -link
+      -logo
+      -desc
       */
     }
     const slug = generateSlug(data.title);
@@ -41,39 +44,48 @@ const Categories = () => {
     data.imageUrl = imageUrl;
     data.isPublished = isPublished;
     console.log(data);
-    makePostRequest(setLoading, "api/categories", data, "Category", reset);
+    makePostRequest(setLoading, "api/markets", data, "Market", reset);
     setImageUrl("");
-    router.back("dashboard/categories");
+    router.push("/dashboard/markets");
   }
   return (
     <>
-      <FormHeader title="New Category" />
+      <FormHeader title="New Market" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 "
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Category Title"
+            label="Market Title"
             name="title"
             register={register}
             errors={errors}
+            className="w-full"
           />
-
-          <TextAreaInput
-            label="Category Description"
-            name="description"
+          <SelectInput
+            label="Select Categories"
+            name="categoryIds"
             register={register}
             errors={errors}
+            className="w-full"
+            options={categories}
+            multiple={true}
           />
           <ImageInput
             imageUrl={imageUrl}
             setImageUrl={setImageUrl}
-            endpoint="categoryImageUploader"
-            label="Category Image"
+            endpoint="marketLogoUploader"
+            label="Market Logo"
+          />
+          <TextAreaInput
+            label="Market Description"
+            name="description"
+            register={register}
+            errors={errors}
           />
           <ToggleInput
-            label="Publish your Category"
+            label="Market status"
             name="isPublished"
             trueTitle="Active"
             falseTitle="Draft"
@@ -82,12 +94,12 @@ const Categories = () => {
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="CreateCategory"
-          loadingButtonTitle="Creating Category  please wait..."
+          buttonTitle="CreateMarket"
+          loadingButtonTitle="Creating Market please wait..."
         />
       </form>
     </>
   );
 };
 
-export default Categories;
+export default NewMarket;

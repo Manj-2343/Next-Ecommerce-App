@@ -5,8 +5,7 @@ export async function makePostRequest(
   endpoint,
   data,
   resourceName,
-  reset,
-  router
+  reset
 ) {
   try {
     setLoading(true);
@@ -23,7 +22,6 @@ export async function makePostRequest(
       setLoading(false);
       toast.success(`New ${resourceName} Created Successfully`);
       await reset();
-      router.back();
     } else {
       setLoading(false);
       toast.error("Something Went wrong");

@@ -55,7 +55,7 @@ model Market {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   slug        String  @unique
-  logoUrl     String?
+  imageUrl    String?
   description String?
   isPublished Boolean
 
@@ -67,17 +67,24 @@ model Market {
 }
 
 model Product {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
-  slug         String   @unique
-  imageUrl     String?
-  description  String?
-  isPublished  Boolean
-  sku          String?
-  barCode      String?
-  prodictPrice Float
-  salePrice    Float
-  tags         String[]
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  slug           String   @unique
+  imageUrl       String?
+  description    String?
+  isPublished    Boolean
+  isWholeSale    Boolean
+  sku            String?
+  barCode        String?
+  productCode    String?
+  unit           String?
+  productPrice   Float
+  salePrice      Float
+  wholeSalePrice Float
+  productStock   Int
+  wholesaleQty   Int
+  qty            Int
+  tags           String[]
 
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId String   @db.ObjectId
@@ -100,6 +107,9 @@ model Training {
 
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId String   @db.ObjectId
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 enum UserRole {

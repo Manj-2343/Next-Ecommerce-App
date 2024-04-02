@@ -36,7 +36,7 @@ export async function POST(request) {
 
 export async function GET(request) {
   try {
-    const categories = await db.banner.findMany({
+    const categories = await db.category.findMany({
       orderBy: {
         createdAt: "desc",
       },
